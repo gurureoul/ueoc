@@ -20,5 +20,25 @@
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" 
             crossorigin="anonymous">
         </script>
+        <script src="https://d1sn0wfwwwuqhy.cloudfront.net/lex-web-ui-loader.min.js"></script>
+        <script>
+          var loaderOpts = {
+            baseUrl: 'https://d1sn0wfwwwuqhy.cloudfront.net/',
+            shouldLoadMinDeps: true
+          };
+          var loader = new ChatBotUiLoader.IframeLoader(loaderOpts);
+          var chatbotUiConfig = {
+                  /* Example of setting session attributes on parent page
+                  lex: {
+                    sessionAttributes: {
+                      userAgent: navigator.userAgent,
+                      QNAClientFilter: ''
+                    }
+                  }
+                  */
+                };
+          loader.load(chatbotUiConfig)
+            .catch(function (error) { console.error(error); });
+        </script>
     </body>
 </html>
