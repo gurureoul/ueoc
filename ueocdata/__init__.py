@@ -1,12 +1,20 @@
 from flask import Flask
 
-def create_app(test_config=None):
+from .public.routes import public
+from .ueo1.routes import ueo1
+from .ueo3.routes import ueo3
+from .ueo4.routes import ueo4
+from .ueo5.routes import ueo5
+
+def create_app():
     # create and configure the app
     app = Flask(__name__)
 
-    from .public import public
-
-    app.register_blueprint(public, url_prefix='/')
+    app.register_blueprint(public)
+    app.register_blueprint(ueo1)
+    app.register_blueprint(ueo3)
+    app.register_blueprint(ueo4)
+    app.register_blueprint(ueo5)
 
     return app
     

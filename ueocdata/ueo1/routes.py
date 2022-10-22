@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template
 
-public = Blueprint('public', __name__)
+ueo1 = Blueprint('ueo1', __name__, url_prefix='/ueo1')
 
-@public.route('/')
-def main():
+@ueo1.route('/')
+def index():
     return render_template('main.html')
