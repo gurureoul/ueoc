@@ -1,0 +1,17 @@
+{% extends "base.html"%}
+
+{% block main_content %}
+<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+    <div class="container-fluid">
+        <a href="{{ url_for('cms.index')}}" class="navbar-brand ms-4">CMS</a>
+    </div>
+</nav>
+<div class="container">
+    <div class="row">
+        <h1>{% block cms_title %}CMS Menu{% endblock %}</h1>
+    </div>
+    {% block cms_content %}
+    
+    {% endblock %}
+</div>
+{% endblock %}

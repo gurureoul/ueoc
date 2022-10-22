@@ -1,5 +1,11 @@
-{% extends "base.html"%}
-
-{% block main_content %}
-<h1>UEOC CMS, Vagina.</h1>
+{% extends "cms/base.html"%}
+{% block cms_content%}
+    <div class="row">
+        <div class="card-body">
+            <h5 class="card-title">AWS Lex Bot</h5>
+            <p class="card-text">Manage Lexi Bot</p>
+            <a href="{{ url_for('cms.lexi') }}" class="btn btn-outline-primary">View &#xBB</a>
+        </div>
+    </div>
+</div>
 {% endblock %}
