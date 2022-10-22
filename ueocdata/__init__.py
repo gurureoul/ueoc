@@ -5,6 +5,7 @@ from .ueo1.routes import ueo1
 from .ueo3.routes import ueo3
 from .ueo4.routes import ueo4
 from .ueo5.routes import ueo5
+from .cms.routes import cms
 
 def create_app():
     # create and configure the app
@@ -15,6 +16,6 @@ def create_app():
     app.register_blueprint(ueo3)
     app.register_blueprint(ueo4)
     app.register_blueprint(ueo5)
-
+    app.register_blueprint(cms)
     return app
     
