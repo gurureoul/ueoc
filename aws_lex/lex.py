@@ -7,14 +7,30 @@ CONFIDENCE_THRESHOLD = 0.40
 
 class AWSLex():
     def __init__(self):
-        pass
+        self.lex = boto3.client('lexv2-models')
 
     def get_bots(self):
-        lex = boto3.client('lexv2-models')
-        response = lex.list_bots()
+        response = self.lex.list_bots()
         bots = []
         for bot in response['botSummaries']:
             bot_name = bot['botName']
             bot_id = bot['botId']
             bots.append((bot_name, bot_id))
         return bots
+
+    def delete_bot(self,bot_id):
+        print("Deleting bot...")
+        response = self.lex.delete_bot(
+            botId = bot_id,
+            skipResourceInUseCheck=True
+        )
+        try:
+            status = response['botStatus']
+            while status == 'Deleting':
+                status = self.describe(bot_id)['botStatus']
+        except:
+            pass
+        print("Bot deleted...")
+
+    def describe(self, bot_id):
+        return self.lex.describe_bot(botId = bot_id)

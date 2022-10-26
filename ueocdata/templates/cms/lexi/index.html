@@ -16,9 +16,25 @@
         </div>
     </div>
 </div> -->
+<h2>Available Bots</h2>
+<hr>
+
 <ul>
+<div class="container"></div>
 {% for bot in bots %}
-    <li>{{bot[0]}} - {{bot[1]}}</li>
-{% endfor %}
+    
+        <div class="row">
+            <div class="col">
+                <li>{{bot[0]}} - {{bot[1]}}</li>
+            </div>
+            <div class="col">
+                <form method="post" action="{{ url_for('lexi.delete_bot') }}">
+                    <button class="btn btn-danger btn-sm" type="submit" name="delete_bot" value="{{bot[1]}}">Delete</button>
+                </form>
+            </div>
+        </div>
+    
+    {% endfor %}
+</div>
 </ul>
 {% endblock %}
