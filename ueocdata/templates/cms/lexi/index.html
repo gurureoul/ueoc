@@ -16,6 +16,9 @@
         </div>
     </div>
 </div> -->
-
-
+<ul>
+{% for bot in bots %}
+    <li>{{bot[0]}} - {{bot[1]}}</li>
+{% endfor %}
+</ul>
 {% endblock %}
