@@ -21,13 +21,3 @@ def create_app():
     app.register_blueprint(cms)
     app.register_blueprint(lexi)
     return app
-    
-def create_database(app):
-	
-	db_file_name = app.instance_path + '/' + DB_NAME
-	if not exists(db_file_name):
-		with app.app_context():
-			db.create_all()
-		print('Created database!')
-	else:
-		print('Database exists')

@@ -19,7 +19,7 @@ if not os.path.exists(cfg_file):
     secret_key = uuid.uuid4()
     with open(cfg_file, 'w+') as tf:
         # add the secret key to the config file
-        tf.write(f"SECRET_KEY='{secret_key}'")
+        tf.write(f"SECRET_KEY='{secret_key}'\n")
         tf.write(f"SQLALCHEMY_DATABASE_URI='sqlite:///test.db'")
 app = create_app()
 
