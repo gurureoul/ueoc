@@ -10,7 +10,8 @@ from .lexi.routes import lexi
 
 def create_app():
     # create and configure the app
-    app = Flask(__name__)
+    app = Flask(__name__, instance_relative_config=True)
+    app.config.from_pyfile('flask.cfg')
 
     app.register_blueprint(public)
     app.register_blueprint(ueo1)
@@ -21,3 +22,12 @@ def create_app():
     app.register_blueprint(lexi)
     return app
     
+def create_database(app):
+	
+	db_file_name = app.instance_path + '/' + DB_NAME
+	if not exists(db_file_name):
+		with app.app_context():
+			db.create_all()
+		print('Created database!')
+	else:
+		print('Database exists')

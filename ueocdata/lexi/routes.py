@@ -4,7 +4,7 @@ from aws_lex import AWSLex
 
 lexi = Blueprint('lexi', __name__, url_prefix='/cms/lexi')
 
-@lexi.route('/', methods=["GET", "POST"])
+@lexi.route('/', methods=["GET"])
 def index():
     lex = AWSLex()      
     bots = lex.get_bots()
@@ -16,3 +16,7 @@ def delete_bot():
     if request.form.get('delete_bot'):
         lex.delete_bot(request.form['delete_bot'])
     return redirect(request.referrer)
+
+@lexi.route('/create-bot', methods=["GET", "POST"])
+def create_bot():
+    return render_template('cms/lexi/create-bot.html')
