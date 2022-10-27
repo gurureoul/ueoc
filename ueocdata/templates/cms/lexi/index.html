@@ -17,9 +17,12 @@
     </div>
 </div> -->
 <h2>Available Bots</h2> 
-<form method="post" action="{{ url_for('lexi.create_bot') }}">
-    <button class="btn btn-outline-primary btn-sm" type="submit" name="create_bot">Create New Bot</button>
-</form>
+<button class="btn btn-outline-primary btn-sm" type="submit">
+    <a href="{{ url_for('lexi.create_bot') }}" class="text-decoration-none">
+        Create New Bot
+    </a>
+</button>
+
 <hr>
 
 <ul>

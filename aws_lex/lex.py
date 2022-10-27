@@ -9,7 +9,7 @@ class AWSLex():
     def __init__(self):
         self.lex = boto3.client('lexv2-models')
 
-    def create_bot(self, name, desc=None, children=False, 
+    def create_bot(self, name, desc='', children=False,
 					role=BOT_ROLE, timeout=DEFAULT_TIMEOUT):
         print("Creating Bot")
         bot_names = self.get_bot_names()
@@ -21,18 +21,16 @@ class AWSLex():
                 idleSessionTTLInSeconds = timeout,
                 roleArn = role
                 )
-                
             bot_id = response["botId"]
 
             status = self.describe(bot_id)['botStatus']
             while status != "Available":
-                status = describe(bot_id)['botStatus']
+                status = self.describe(bot_id)['botStatus']
             print("Bot created...")
-            self.create_locale(bot_id)	
+            self.create_locale(bot_id)
         else:
             print(f'Bot name: "{name}" is already used')
-        
-        
+
     def create_locale(self, bot_id):
         print("Making Locale...")
         response = self.lex.create_bot_locale(

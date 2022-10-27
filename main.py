@@ -1,10 +1,13 @@
-from ueocdata import create_app
 import os
+import sys
 import uuid
+from ueocdata import create_app
+
 
 # get the current directory of the main.py file
 basedir = os.path.abspath(os.path.dirname(__file__))
-
+print(basedir + '/ueocdata/')
+sys.path.insert(0, f"{basedir}/ueocdata/")
 # check to see if there is an instance folder, since it's not
 # committed to source control
 if not os.path.exists(basedir + '/instance'):
@@ -20,7 +23,7 @@ if not os.path.exists(cfg_file):
     with open(cfg_file, 'w+') as tf:
         # add the secret key to the config file
         tf.write(f"SECRET_KEY='{secret_key}'\n")
-        tf.write(f"SQLALCHEMY_DATABASE_URI='sqlite:///test.db'")
+        tf.write("SQLALCHEMY_DATABASE_URI='sqlite:///test.db'")
 app = create_app()
 
 if __name__ == '__main__':

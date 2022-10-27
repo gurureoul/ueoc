@@ -5,6 +5,32 @@
 <h2>Create Bot</h2>
 <hr>
 <div class="container"></div>
-
+    <form method="POST" action=" {{ url_for('lexi.create_bot') }}">
+        {{ cb_form.csrf_token }}
+        <p>
+            {{ cb_form.name.label }}
+        </p>
+        {{ cb_form.name(size=20) }}
+        {% if cb_form.name.errors %}
+            <ul class="errors">
+                {% for error in cb_form.name.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        <p>
+            {{ cb_form.description.label }}
+        </p>
+        {{ cb_form.description(rows=10, cols=50) }}
+        {% if cb_form.description.errors %}
+            <ul class="errors">
+                {% for error in cb_form.description.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        <br>
+      {{ cb_form.submit}}    
+    </form>
 </div>
 {% endblock %}
